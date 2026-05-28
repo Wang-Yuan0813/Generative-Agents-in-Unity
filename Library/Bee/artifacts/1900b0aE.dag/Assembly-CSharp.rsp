@@ -480,12 +480,14 @@
 "Assets/Scripts/Character/Hero.cs"
 "Assets/Scripts/Managers/Bootstrap.cs"
 "Assets/Scripts/Managers/GameManager.cs"
+"Assets/Scripts/Managers/LLMDialogueManager.cs"
 "Assets/Scripts/Managers/ManagersAutoLoader.cs"
 "Assets/Scripts/Managers/ManagersRoot.cs"
 "Assets/Scripts/Managers/MySceneManager.cs"
 "Assets/Scripts/Managers/UIManager.cs"
 "Assets/Scripts/Navigation/WayPoint.cs"
 "Assets/Scripts/Navigation/WayPointManager.cs"
+"Assets/Scripts/Test/DialogueInteraction.cs"
 -langversion:9.0
 /deterministic
 /optimize+

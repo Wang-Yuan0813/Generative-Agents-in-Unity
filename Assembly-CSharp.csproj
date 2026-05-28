@@ -65,8 +65,10 @@
     <Compile Include="Assets\Scripts\Managers\ManagersRoot.cs" />
     <Compile Include="Assets\Scripts\Navigation\WayPoint.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\LLMDialogueManager.cs" />
     <Compile Include="Assets\Scripts\Managers\Bootstrap.cs" />
     <Compile Include="Assets\Scripts\Character\Hero.cs" />
+    <Compile Include="Assets\Scripts\Test\DialogueInteraction.cs" />
     <Compile Include="Assets\Scripts\Navigation\WayPointManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ManagersAutoLoader.cs" />
     <Compile Include="Assets\Scripts\Managers\MySceneManager.cs" />
