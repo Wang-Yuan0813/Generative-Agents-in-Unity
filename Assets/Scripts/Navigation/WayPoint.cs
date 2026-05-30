@@ -8,6 +8,8 @@ public class WayPoint : MonoBehaviour
     Vector3 lastPos;
 
     public List<WayPoint> neighbors = new List<WayPoint>();
+    public List<Event> events = new List<Event>();
+
 
     void Update()
     {
@@ -26,8 +28,8 @@ public class WayPoint : MonoBehaviour
     
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-
+        //draw neighbors' line
+        Gizmos.color = Color.blue;
         foreach (var neighbor in neighbors)
         {
             if (neighbor != null)
@@ -35,9 +37,18 @@ public class WayPoint : MonoBehaviour
                 Gizmos.DrawLine(transform.position, neighbor.transform.position);
             }
         }
-
-        Gizmos.color = Color.blue;
         Gizmos.DrawSphere(transform.position, 0.15f);
+        //draw attached events' line
+        Gizmos.color = Color.yellow;
+        foreach (var neighbor in events)
+        {
+            if (neighbor != null)
+            {
+                Gizmos.DrawLine(transform.position, neighbor.transform.position);
+                Gizmos.DrawSphere(neighbor.transform.position, 0.15f);
+            }
+        }
+
     }
 
     public void AddNeighbor(WayPoint other)//add neighbor both

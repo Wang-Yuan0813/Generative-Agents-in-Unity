@@ -133,7 +133,6 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_INPUT_SYSTEM
--define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
 -define:TEXTCORE_FONT_ENGINE_1_6_OR_NEWER
@@ -480,7 +479,6 @@
 "Assets/Scripts/Character/Hero.cs"
 "Assets/Scripts/Managers/Bootstrap.cs"
 "Assets/Scripts/Managers/GameManager.cs"
-"Assets/Scripts/Managers/LLMDialogueManager.cs"
 "Assets/Scripts/Managers/ManagersAutoLoader.cs"
 "Assets/Scripts/Managers/ManagersRoot.cs"
 "Assets/Scripts/Managers/MySceneManager.cs"
@@ -489,7 +487,9 @@
 "Assets/Scripts/Navigation/WayPointManager.cs"
 "Assets/Scripts/Test/AgentController.cs"
 "Assets/Scripts/Test/DialogueInteraction.cs"
+"Assets/Scripts/Test/Event.cs"
 "Assets/Scripts/Test/LLMService.cs"
+"Assets/Scripts/Test/MemorySystem.cs"
 "Assets/Scripts/Test/MovementController.cs"
 -langversion:9.0
 /deterministic
