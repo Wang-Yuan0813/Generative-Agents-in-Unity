@@ -16,16 +16,10 @@ public class LLMDialogueManager : MonoBehaviour
     [Range(0, 2)] public float temperature = 0.7f;// 控制生成文本的随机性（0-2，值越高越随机）
     [Range(1, 1000)] public int maxTokens = 150;// 生成的最大令牌数（控制回复长度）
 
-    // 角色设定
-    [System.Serializable]
-    public class NPCCharacter
-    {
-        public string name;
-        [TextArea(3, 10)]
-        public string personalityPrompt = "";// 角色设定提示词
-    }
+    
+    
 
-    [SerializeField] public NPCCharacter npcCharacter;
+    [SerializeField] public CharacterSetting character;
 
     // 回调委托，用于异步处理API响应
     public delegate void DialogueCallback(string response, bool isSuccess);
@@ -48,7 +42,7 @@ public class LLMDialogueManager : MonoBehaviour
         // 构建消息列表，包含系统提示和用户输入
         List<Message> messages = new List<Message>
         {
-            new Message { role = "system", content = npcCharacter.personalityPrompt },// 系统角色设定
+            new Message { role = "system", content = character.getFinalPrompt()},
             new Message { role = "user", content = userInput }// 用户输入
         };
 
@@ -82,7 +76,7 @@ public class LLMDialogueManager : MonoBehaviour
         }
         else
         {
-            callback?.Invoke(name + "（陷入沉默）", false);
+            callback?.Invoke(name + "(Silent)", false);
         }
     }
     /// <summary>
@@ -127,6 +121,20 @@ public class LLMDialogueManager : MonoBehaviour
         {
             Debug.LogError($"JSON解析失败: {e.Message}\n响应内容：{jsonResponse}");
             return null;
+        }
+    }
+
+    [System.Serializable]
+    public class CharacterSetting
+    {
+        public string name;
+        [TextArea(3, 10)]
+        public string personalityPrompt = "";// 角色设定提示词
+        //System Prompt Setting
+        private string systemPrompt = "{\r\n\"action\": \"move\",\r\n\"target\": \"You are an AI agent in a game. You must strictly output JSON. You are forbidden to output any explanations. You are forbidden to output natural language. You can only output the following format: { \"action\":\"move\", \"target\":\"location name\" } For example: Player input: \"Go to the table\" Output: { \"action\":\"move\", \"target\":\"table\" }\"\r\n}";
+        public string getFinalPrompt()
+        {
+            return systemPrompt + "\n\n" + personalityPrompt;
         }
     }
 

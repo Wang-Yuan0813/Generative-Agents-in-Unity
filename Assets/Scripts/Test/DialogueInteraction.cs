@@ -4,41 +4,89 @@ using TMPro;
 
 public class DialogueInteraction : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private LLMDialogueManager dialogueManager;
-    [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private TMP_Text dialogueText;
+    //==================================================
+    // REFERENCES
+    //==================================================
 
-    private string characterName;
+    [Header("References")]
+
+    [SerializeField]
+    private AgentController agentController;
+
+    [SerializeField]
+    private TMP_InputField inputField;
+
+    [SerializeField]
+    private TMP_Text dialogueText;
+
+    //==================================================
+    // SETTINGS
+    //==================================================
 
     [Header("Settings")]
-    [SerializeField] private float typingSpeed = 0.05f;
 
-    void Start()
+    [SerializeField]
+    private float typingSpeed = 0.03f;
+
+    //==================================================
+    // UNITY EVENTS
+    //==================================================
+
+    private void Start()
     {
-        characterName = dialogueManager.npcCharacter.name;
-
         inputField.onSubmit.AddListener(OnSubmit);
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    //==================================================
+    // INPUT
+    //==================================================
+
     private void OnSubmit(string text)
     {
-        if (string.IsNullOrEmpty(text)) return;
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return;
+        }
 
-        dialogueManager.SendDialogueRequest(text, HandleAIResponse);
+        ShowPlayerMessage(text);
+
+        agentController.ProcessPlayerInput(text);
 
         inputField.text = "";
+
         inputField.ActivateInputField();
     }
 
-    private void HandleAIResponse(string response, bool success)
+    //==================================================
+    // UI
+    //==================================================
+
+    private void ShowPlayerMessage(string text)
     {
-        StartCoroutine(TypewriterEffect(
-            success
-            ? characterName + ": " + response
-            : characterName + ": （通讯中断）"
-        ));
+        StopAllCoroutines();
+
+        StartCoroutine(
+            TypewriterEffect(
+                "Player: " + text));
     }
+
+    public void ShowAgentMessage(string text)
+    {
+        StopAllCoroutines();
+
+        StartCoroutine(
+            TypewriterEffect(
+                "Agent: " + text));
+    }
+
+    //==================================================
+    // TYPEWRITER
+    //==================================================
 
     private IEnumerator TypewriterEffect(string text)
     {
@@ -47,8 +95,11 @@ public class DialogueInteraction : MonoBehaviour
         foreach (char c in text)
         {
             currentText += c;
+
             dialogueText.text = currentText;
-            yield return new WaitForSeconds(typingSpeed);
+
+            yield return new WaitForSeconds(
+                typingSpeed);
         }
     }
 }

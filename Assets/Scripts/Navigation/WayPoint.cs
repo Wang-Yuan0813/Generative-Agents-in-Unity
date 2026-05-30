@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class WayPoint : MonoBehaviour
 {
     public Grid grid;
-    /*[SerializeField]
-    private WayPointManager wayPointManager = null;*/
     Vector3 lastPos;
 
     public List<WayPoint> neighbors = new List<WayPoint>();

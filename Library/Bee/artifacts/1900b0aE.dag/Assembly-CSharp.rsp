@@ -487,7 +487,10 @@
 "Assets/Scripts/Managers/UIManager.cs"
 "Assets/Scripts/Navigation/WayPoint.cs"
 "Assets/Scripts/Navigation/WayPointManager.cs"
+"Assets/Scripts/Test/AgentController.cs"
 "Assets/Scripts/Test/DialogueInteraction.cs"
+"Assets/Scripts/Test/LLMService.cs"
+"Assets/Scripts/Test/MovementController.cs"
 -langversion:9.0
 /deterministic
 /optimize+

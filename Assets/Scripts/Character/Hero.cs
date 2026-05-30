@@ -1,16 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class Hero : MonoBehaviour
 {
-    public WayPointManager wayPointManager;
-    public float speed = 5f;
     public WayPoint startPoint;
     public WayPoint targetPoint;
+    /*public WayPointManager wayPointManager;
+    public float speed = 5f;
     
     private List<WayPoint> path = new List<WayPoint>();
     private int currentIndex = 0;
     private WayPoint currentPoint;
+
+    public LLMService llm;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,6 +71,6 @@ public class Hero : MonoBehaviour
 
             currentIndex++;
         }
-    }
+    }*/
 
 }
