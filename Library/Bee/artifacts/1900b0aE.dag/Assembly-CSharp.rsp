@@ -491,6 +491,7 @@
 "Assets/Scripts/Test/LLMService.cs"
 "Assets/Scripts/Test/MemorySystem.cs"
 "Assets/Scripts/Test/MovementController.cs"
+"Assets/Scripts/Test/ObservationSystem.cs"
 -langversion:9.0
 /deterministic
 /optimize+

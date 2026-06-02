@@ -15,19 +15,29 @@ public class AgentController : MonoBehaviour
     [SerializeField]
     private MovementController movementController;
 
+    [SerializeField]
+    private MemorySystem memorySystem;
+    [SerializeField]
+    [TextArea(5, 20)]
+    private string memoryPrompt;//save memory as a natural language text
+
+    [SerializeField]
+    private ObservationSystem observationSystem;
+
+    [SerializeField]
+    [TextArea(5, 20)]
+    private string observationPrompt;//save observation as a natural language text
     //==================================================
     // CHARACTER SETTINGS
     //==================================================
-
     [Header("Character Settings")]
-
     [SerializeField]
     private string agentName = "Agent1";
-
-    [TextArea(5, 20)]
     [SerializeField]
+    [TextArea(5, 20)]
     private string personalityPrompt;
-
+    //==================================================
+    
     //==================================================
     // AI ACTION
     //==================================================
@@ -49,12 +59,9 @@ public class AgentController : MonoBehaviour
     /// </summary>
     public void ProcessPlayerInput(string playerInput)
     {
-        List<LLMService.Message> messages =
-            BuildMessages(playerInput);
+        List<LLMService.Message> messages = BuildMessages(playerInput);
 
-        llmService.SendRequest(
-            messages,
-            OnLLMResponse);
+        llmService.SendRequest(messages, OnLLMResponse);
     }
 
     //==================================================
@@ -91,7 +98,6 @@ public class AgentController : MonoBehaviour
 
     private string BuildSystemPrompt()
     {
-        
         string prompt =
         $@"You are {agentName}, an AI agent in a game world.
 
@@ -102,6 +108,9 @@ public class AgentController : MonoBehaviour
 
         Character Personality:
         {personalityPrompt}
+        
+        Current Memories:
+        {memoryPrompt}
 
         Available Actions:
         - move
@@ -111,40 +120,6 @@ public class AgentController : MonoBehaviour
             ""action"": """",
             ""target"": """"
         }}";
-        /*
-        string knownLocationText =
-            string.Join(", ", knownLocations);
-
-        string visibleObjectText =
-            string.Join(", ", visibleObjects);string prompt =
-        $@"You are an AI agent in a game world.
-
-        You must strictly output JSON.
-
-        Do not output explanations.
-        Do not output natural language.
-
-        Character Personality:
-        {personalityPrompt}
-
-        Current Location:
-        {currentLocation}
-
-        Known Locations:
-        {knownLocationText}
-
-        Visible Objects:
-        {visibleObjectText}
-
-        Available Actions:
-        - move
-        - observe
-
-        JSON Format:
-        {{
-            ""action"": """",
-            ""target"": """"
-        }}";*/
 
         return prompt;
     }
@@ -153,9 +128,7 @@ public class AgentController : MonoBehaviour
     // HANDLE RESPONSE
     //==================================================
 
-    private void OnLLMResponse(
-        string response,
-        bool success)
+    private void OnLLMResponse(string response, bool success)
     {
         if (!success)
         {
@@ -166,8 +139,7 @@ public class AgentController : MonoBehaviour
         Debug.Log("LLM Response:");
         Debug.Log(response);
 
-        AIAction action =
-            ParseAction(response);
+        AIAction action = ParseAction(response);
 
         if (action == null)
         {
@@ -202,6 +174,11 @@ public class AgentController : MonoBehaviour
 
     private void ExecuteAction(AIAction action)
     {
+        //before every action, observe the environment first
+        ObserveEnvironment();
+        Debug.Log("current observation prompt:\n" + observationPrompt + "\n=======");
+        Debug.Log("current memory prompt:\n" + memoryPrompt + "\n=======");
+
         Debug.Log("Executing Action:");
         Debug.Log(action.action);
 
@@ -213,20 +190,12 @@ public class AgentController : MonoBehaviour
 
                 break;
 
-            case "observe":
-
-                ObserveEnvironment();
-
-                break;
-
             default:
 
-                Debug.LogWarning(
-                    "Unknown Action: " +
-                    action.action);
-
+                Debug.LogWarning("Unknown Action: " + action.action);
                 break;
         }
+        
     }
 
     //==================================================
@@ -250,30 +219,10 @@ public class AgentController : MonoBehaviour
     private void ObserveEnvironment()
     {
         Debug.Log("Observing Environment...");
+        observationPrompt = observationSystem.BuildObservationPrompt(movementController.GetCurrentWayPoint());//get observation from this location
+        memorySystem.addMemory(observationPrompt);//convert observation into memory
+        memoryPrompt = memorySystem.BuildMemoryPrompt();
+        Debug.Log("Observing done!");
     }
 
-    //==================================================
-    // MEMORY UPDATE
-    //==================================================
-
-    /*public void AddKnownLocation(string location)
-    {
-        if (!knownLocations.Contains(location))
-        {
-            knownLocations.Add(location);
-        }
-    }
-
-    public void AddVisibleObject(string objectName)
-    {
-        if (!visibleObjects.Contains(objectName))
-        {
-            visibleObjects.Add(objectName);
-        }
-    }
-
-    public void SetCurrentLocation(string location)
-    {
-        currentLocation = location;
-    }*/
 }

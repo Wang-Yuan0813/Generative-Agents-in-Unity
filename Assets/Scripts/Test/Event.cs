@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 [ExecuteAlways]
 public class Event : MonoBehaviour
@@ -10,9 +9,10 @@ public class Event : MonoBehaviour
     [Header("Event Setting")]
     [SerializeField]
     [TextArea(5, 20)]
-    private string describtion;
+    private string description;
+    [SerializeField]
     [TextArea(5, 20)]
-    public string currentState;
+    private string currentState;
     void Update()
     {
         if (grid == null) return;
@@ -31,5 +31,10 @@ public class Event : MonoBehaviour
     {
         currentState = nextState;
         Debug.Log(this.name + "has been interacted, state change to->" + nextState);
+    }
+    
+    public string GetObservationText() 
+    { 
+        return description + "\nCurrent State: " + currentState; 
     }
 }

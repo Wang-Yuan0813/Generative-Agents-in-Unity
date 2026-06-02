@@ -59,22 +59,17 @@ public class MovementController : MonoBehaviour
     {
         if (wayPointManager == null)
         {
-            Debug.LogError(
-                "WayPointManager Missing");
-
+            Debug.LogError("WayPointManager Missing");
             return;
         }
 
         if (startPoint == null)
         {
-            Debug.LogError(
-                "Start Point Missing");
-
+            Debug.LogError("Start Point Missing");
             return;
         }
 
-        transform.position =
-            startPoint.transform.position;
+        transform.position = startPoint.transform.position;
 
         currentWayPoint = startPoint;
     }
@@ -85,38 +80,28 @@ public class MovementController : MonoBehaviour
 
     public void MoveToNode(string targetNodeName)
     {
-        WayPoint targetNode =
-            FindWayPointByName(targetNodeName);
+        WayPoint targetNode = FindWayPointByName(targetNodeName);
 
         if (targetNode == null)
         {
-            Debug.LogWarning(
-                "Target Node Not Found: " +
-                targetNodeName);
-
+            Debug.LogWarning("Target Node Not Found: " + targetNodeName);
             return;
         }
 
         if (targetNode == currentWayPoint)
         {
-            Debug.Log(
-                "Already At Target Node");
+            Debug.Log("Already At Target Node");
 
             return;
         }
 
-        currentPath =
-            wayPointManager.FindPath(
-                currentWayPoint,
-                targetNode);
+        currentPath = wayPointManager.FindPath(currentWayPoint, targetNode);
 
         currentPathIndex = 0;
 
         isMoving = true;
 
-        Debug.Log(
-            "Start Moving To: " +
-            targetNodeName);
+        Debug.Log("Start Moving To: " + targetNodeName);
     }
 
     //==================================================
@@ -145,19 +130,13 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        WayPoint targetNode =
-            currentPath[currentPathIndex];
+        WayPoint targetNode = currentPath[currentPathIndex];
 
         transform.position =
-            Vector3.MoveTowards(
-                transform.position,
-                targetNode.transform.position,
-                moveSpeed * Time.deltaTime);
+            Vector3.MoveTowards(transform.position, targetNode.transform.position, moveSpeed * Time.deltaTime);
 
         float distance =
-            Vector3.Distance(
-                transform.position,
-                targetNode.transform.position);
+            Vector3.Distance(transform.position, targetNode.transform.position);
 
         if (distance < 0.05f)
         {
@@ -173,9 +152,7 @@ public class MovementController : MonoBehaviour
     {
         currentWayPoint = node;
 
-        Debug.Log(
-            "Reached Node: " +
-            node.name);
+        //Debug.Log("Reached Node: " + node.name);
 
         currentPathIndex++;
 
