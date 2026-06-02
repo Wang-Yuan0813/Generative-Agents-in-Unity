@@ -15,7 +15,7 @@ public class ObservationSystem : MonoBehaviour
         // Current Location
         //----------------------------------------
 
-        observations.Add("Current location: " + currentNode.name);
+        observations.Add("Location: " + currentNode.name);
 
         //----------------------------------------
         // Current Node Events
@@ -36,11 +36,11 @@ public class ObservationSystem : MonoBehaviour
             observations.Add("Nearby location: " + neighbor.name);
 
             // Neighbor Events
-            if (neighbor.events.Count != 0)
+            /*if (neighbor.events.Count != 0)
                 foreach (Event evt in neighbor.events)
                     observations.Add(evt.GetObservationText());
             else
-                observations.Add("There is nothing interesting around " + neighbor.name);
+                observations.Add("There is nothing interesting around " + neighbor.name);*/
         }
 
         return observations;

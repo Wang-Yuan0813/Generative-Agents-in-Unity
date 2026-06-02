@@ -1,59 +1,53 @@
-using UnityEngine;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AgentController : MonoBehaviour
 {
-    //==================================================
     // REFERENCES
-    //==================================================
-
     [Header("References")]
-
     [SerializeField]
     private LLMService llmService;
-
     [SerializeField]
     private MovementController movementController;
-
     [SerializeField]
     private MemorySystem memorySystem;
     [SerializeField]
-    [TextArea(5, 20)]
-    private string memoryPrompt;//save memory as a natural language text
-
-    [SerializeField]
     private ObservationSystem observationSystem;
-
-    [SerializeField]
-    [TextArea(5, 20)]
-    private string observationPrompt;//save observation as a natural language text
-    //==================================================
     // CHARACTER SETTINGS
-    //==================================================
-    [Header("Character Settings")]
+    [Header("Character Properies")]
     [SerializeField]
     private string agentName = "Agent1";
     [SerializeField]
-    [TextArea(5, 20)]
+    [TextArea(2, 20)]
     private string personalityPrompt;
-    //==================================================
-    
-    //==================================================
+    [SerializeField]
+    [TextArea(3, 20)]
+    private string memoryPrompt;//save memory as a natural language text
+    [SerializeField]
+    [TextArea(3, 20)]
+    private string observationPrompt;//save observation as a natural language text
+    [SerializeField]
+    private Queue<string> tasks;//tasks queue
     // AI ACTION
-    //==================================================
-
     [System.Serializable]
     public class AIAction
     {
+        public string thought;
         public string action;
-
-        public string target;
+        public ActionResult result;
     }
-
-    //==================================================
-    // PUBLIC API
-    //==================================================
-
+    [System.Serializable]
+    public class ActionResult
+    {
+        //move action
+        public string target;
+        //reflect action
+        public string content; 
+        public int importance;
+    }
+    //actions
+    public Action<string> OnThoughtGenerated;
     /// <summary>
     /// Send player command to AI
     /// </summary>
@@ -104,22 +98,100 @@ public class AgentController : MonoBehaviour
         You must strictly output JSON.
 
         Do not output explanations.
-        Do not output natural language.
 
-        Character Personality:
-        {personalityPrompt}
-        
-        Current Memories:
-        {memoryPrompt}
+        Format:
 
-        Available Actions:
-        - move
-
-        JSON Format:
         {{
-            ""action"": """",
-            ""target"": """"
-        }}";
+            ""thought"":"""",
+            ""action"":"""",
+            ""result"":{{}}
+        }}
+
+        Rules:
+        - thought must be short.
+        - thought should explain the reason for the action.
+        - action must be a game action.
+        - result format depends on action type.
+
+        Available Game Actions:
+        - move
+        - observe
+        - stay
+        - reflect
+        - plan
+
+        Move Action Format:
+
+        {{
+            ""thought"":""The kitchen may contain food."",
+            ""action"":""move"",
+            ""result"":
+            {{
+                ""target"":""kitchen""
+            }}
+        }}
+
+        Reflect Action Format:
+
+        {{
+            ""thought"":""I have enough memories to infer a pattern."",
+            ""action"":""reflect"",
+            ""result"":
+            {{
+                ""content"":""The player seems interested in food."",
+                ""importance"":8
+            }}
+        }}
+
+        Rules for Reflection:
+        - content must summarize multiple memories.
+        - content must be high-level knowledge.
+        - importance must be between 1 and 10.
+        - do not repeat raw observations.
+        - reflection should infer personality, preference, habit, or world knowledge.
+
+        Current Memories:
+        {memoryPrompt}";
+
+        /*string prompt =
+        $@"You are {agentName}, an AI agent in a game world. 
+        You must strictly output JSON. 
+        Do not output explanations. 
+        Format: 
+        {{ 
+            ""thought"":"""", 
+            ""action"":"""", 
+            ""result"":"""" 
+        }} 
+        Rules: 
+        - thought must be short. 
+        - thought should explain the reason for the action. 
+        - action must be a game action. 
+        - result must be a waypoint or object name or a action result. 
+        Available Game Actions:
+        -move
+        -observe
+        -stay
+        -reflect
+        -plan
+        Move Example: 
+        {{ 
+            ""thought"":""The kitchen may contain food."", 
+            ""action"":""move"", 
+            ""result"":""kitchen"" 
+        }}
+        Reflect Example:
+        {{ 
+            ""thought"":""I have too much memories. It's time to organize my thoughts."", 
+            ""action"":""reflect"", 
+            ""result"":
+            {{
+                ""content"":""The player seems interested in food."",
+                ""importance"":8
+            }}  
+        }}
+        Current Memories:
+        {memoryPrompt}";*/
 
         return prompt;
     }
@@ -146,9 +218,7 @@ public class AgentController : MonoBehaviour
             Debug.LogError("Failed To Parse AI Action");
             return;
         }
-        Debug.Log("AI Response:");
-        Debug.Log(response);
-
+        OnThoughtGenerated?.Invoke(action.thought);//invoke action for UI display
         ExecuteAction(action);
     }
 
@@ -179,29 +249,30 @@ public class AgentController : MonoBehaviour
         Debug.Log("current observation prompt:\n" + observationPrompt + "\n=======");
         Debug.Log("current memory prompt:\n" + memoryPrompt + "\n=======");
 
-        Debug.Log("Executing Action:");
-        Debug.Log(action.action);
-
+        Debug.Log("[Thought]:" + action.thought);
+        Debug.Log("[Executing Action]:" + action.action);
         switch (action.action)
         {
             case "move":
-
-                MoveToTarget(action.target);
-
+                MoveToTarget(action.result.target);
                 break;
-
+            case "observe":
+                break;
+            case "stay":
+                break;
+            case "reflect":
+                memorySystem.AddMemory(action.result.content, action.result.importance, MemorySystem.MemoryType.Reflection);
+                break;
+            case "plan":
+                break;
             default:
-
                 Debug.LogWarning("Unknown Action: " + action.action);
                 break;
         }
         
     }
-
-    //==================================================
+    // ACTIONS
     // MOVE
-    //==================================================
-
     private void MoveToTarget(string target)
     {
         Debug.Log("Moving To: " + target);
@@ -211,16 +282,12 @@ public class AgentController : MonoBehaviour
             movementController.MoveToNode(target);
         }
     }
-
-    //==================================================
     // OBSERVE
-    //==================================================
-
     private void ObserveEnvironment()
     {
         Debug.Log("Observing Environment...");
         observationPrompt = observationSystem.BuildObservationPrompt(movementController.GetCurrentWayPoint());//get observation from this location
-        memorySystem.addMemory(observationPrompt);//convert observation into memory
+        memorySystem.AddMemory(observationPrompt);//convert observation into memory
         memoryPrompt = memorySystem.BuildMemoryPrompt();
         Debug.Log("Observing done!");
     }

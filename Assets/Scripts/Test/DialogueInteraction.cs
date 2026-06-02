@@ -1,45 +1,35 @@
 ﻿using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Xml.Serialization;
 
 public class DialogueInteraction : MonoBehaviour
 {
-    //==================================================
     // REFERENCES
-    //==================================================
-
     [Header("References")]
-
     [SerializeField]
     private AgentController agentController;
-
     [SerializeField]
     private TMP_InputField inputField;
-
     [SerializeField]
     private TMP_Text dialogueText;
-
-    //==================================================
     // SETTINGS
-    //==================================================
-
     [Header("Settings")]
-
     [SerializeField]
     private float typingSpeed = 0.03f;
+    //content
 
-    //==================================================
     // UNITY EVENTS
-    //==================================================
-
     private void Start()
     {
         inputField.onSubmit.AddListener(OnSubmit);
+        agentController.OnThoughtGenerated += ShowAgentThought;
     }
 
     private void OnDestroy()
     {
         StopAllCoroutines();
+        agentController.OnThoughtGenerated -= ShowAgentThought;
     }
 
     //==================================================
@@ -53,7 +43,7 @@ public class DialogueInteraction : MonoBehaviour
             return;
         }
 
-        ShowPlayerMessage(text);
+        //ShowPlayerMessage(text);
 
         agentController.ProcessPlayerInput(text);
 
@@ -70,22 +60,17 @@ public class DialogueInteraction : MonoBehaviour
     {
         StopAllCoroutines();
 
-        StartCoroutine(
-            TypewriterEffect(
-                "Player: " + text));
+        StartCoroutine(TypewriterEffect("Player: " + text));
     }
-
-    public void ShowAgentMessage(string text)
+    private void ShowAgentThought(string text)
     {
         StopAllCoroutines();
 
-        StartCoroutine(
-            TypewriterEffect(
-                "Agent: " + text));
+        StartCoroutine(TypewriterEffect(text));
     }
 
     //==================================================
-    // TYPEWRITER
+    // TYPEWRITER Effect
     //==================================================
 
     private IEnumerator TypewriterEffect(string text)
