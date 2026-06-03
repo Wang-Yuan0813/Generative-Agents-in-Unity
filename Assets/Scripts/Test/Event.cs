@@ -13,6 +13,9 @@ public class Event : MonoBehaviour
     [SerializeField]
     [TextArea(5, 20)]
     private string currentState;
+    [SerializeField]
+    [TextArea(2, 20)]
+    private string userDisplay;
     void Update()
     {
         if (grid == null) return;

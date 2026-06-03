@@ -28,8 +28,7 @@ public class MovementController : MonoBehaviour
     // RUNTIME DATA
     //==================================================
 
-    private List<WayPoint> currentPath =
-        new List<WayPoint>();
+    private List<WayPoint> currentPath = new List<WayPoint>();
 
     private int currentPathIndex = 0;
 

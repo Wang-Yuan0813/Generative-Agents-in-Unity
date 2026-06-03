@@ -28,7 +28,7 @@ public class AgentController : MonoBehaviour
     [TextArea(3, 20)]
     private string observationPrompt;//save observation as a natural language text
     [SerializeField]
-    private Queue<string> tasks;//tasks queue
+    private List<string> tasks;//tasks queue
     // AI ACTION
     [System.Serializable]
     public class AIAction
@@ -45,6 +45,8 @@ public class AgentController : MonoBehaviour
         //reflect action
         public string content; 
         public int importance;
+        //plan
+        public List<string> plans;
     }
     //actions
     public Action<string> OnThoughtGenerated;
@@ -57,11 +59,7 @@ public class AgentController : MonoBehaviour
 
         llmService.SendRequest(messages, OnLLMResponse);
     }
-
-    //==================================================
     // BUILD PROMPT
-    //==================================================
-
     private List<LLMService.Message> BuildMessages(
         string playerInput)
     {
@@ -85,11 +83,7 @@ public class AgentController : MonoBehaviour
 
         return messages;
     }
-
-    //==================================================
     // SYSTEM PROMPT
-    //==================================================
-
     private string BuildSystemPrompt()
     {
         string prompt =
@@ -150,56 +144,40 @@ public class AgentController : MonoBehaviour
         - do not repeat raw observations.
         - reflection should infer personality, preference, habit, or world knowledge.
 
-        Current Memories:
-        {memoryPrompt}";
+        Plan Action Format:
 
-        /*string prompt =
-        $@"You are {agentName}, an AI agent in a game world. 
-        You must strictly output JSON. 
-        Do not output explanations. 
-        Format: 
-        {{ 
-            ""thought"":"""", 
-            ""action"":"""", 
-            ""result"":"""" 
-        }} 
-        Rules: 
-        - thought must be short. 
-        - thought should explain the reason for the action. 
-        - action must be a game action. 
-        - result must be a waypoint or object name or a action result. 
-        Available Game Actions:
-        -move
-        -observe
-        -stay
-        -reflect
-        -plan
-        Move Example: 
-        {{ 
-            ""thought"":""The kitchen may contain food."", 
-            ""action"":""move"", 
-            ""result"":""kitchen"" 
-        }}
-        Reflect Example:
-        {{ 
-            ""thought"":""I have too much memories. It's time to organize my thoughts."", 
-            ""action"":""reflect"", 
+        {{
+            ""thought"":""I should break the task into steps."",
+            ""action"":""plan"",
             ""result"":
             {{
-                ""content"":""The player seems interested in food."",
-                ""importance"":8
-            }}  
+                ""plans"":
+                [
+                    ""move to kitchen"",
+                    ""observe kitchen"",
+                    ""move to table"",
+                    ""take food""
+                ]
+            }}
         }}
+
+        Rules for Planning:
+        - use ""plan"" when the player gives a complex task.
+        - plans must be ordered step-by-step tasks.
+        - each plan should be short and simple.
+        - plans should use game actions.
+        - avoid unnecessary steps.
+        - maximum 5 plans.
+
         Current Memories:
-        {memoryPrompt}";*/
+        {memoryPrompt}
+
+        Current Location:
+        {movementController.GetCurrentWayPoint().name}";
 
         return prompt;
     }
-
-    //==================================================
     // HANDLE RESPONSE
-    //==================================================
-
     private void OnLLMResponse(string response, bool success)
     {
         if (!success)
@@ -221,11 +199,7 @@ public class AgentController : MonoBehaviour
         OnThoughtGenerated?.Invoke(action.thought);//invoke action for UI display
         ExecuteAction(action);
     }
-
-    //==================================================
     // PARSE ACTION
-    //==================================================
-
     private AIAction ParseAction(string json)
     {
         try
@@ -237,11 +211,7 @@ public class AgentController : MonoBehaviour
             return null;
         }
     }
-
-    //==================================================
     // EXECUTE ACTION
-    //==================================================
-
     private void ExecuteAction(AIAction action)
     {
         //before every action, observe the environment first
@@ -264,6 +234,8 @@ public class AgentController : MonoBehaviour
                 memorySystem.AddMemory(action.result.content, action.result.importance, MemorySystem.MemoryType.Reflection);
                 break;
             case "plan":
+                Debug.Log("planning");
+                PlanTasks(action.result.plans);
                 break;
             default:
                 Debug.LogWarning("Unknown Action: " + action.action);
@@ -291,5 +263,10 @@ public class AgentController : MonoBehaviour
         memoryPrompt = memorySystem.BuildMemoryPrompt();
         Debug.Log("Observing done!");
     }
-
+    // PLAN
+    private void PlanTasks(List<string> plans) 
+    {
+        tasks.Clear();
+        tasks = plans;
+    }
 }
