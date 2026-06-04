@@ -3141,6 +3141,8 @@ MonoBehaviour:
   memoryPrompt: 
   observationPrompt: 
   tasks: []
+  currentTaskIndex: 0
+  taskWaitingDuration: 6
 --- !u!114 &1484199913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3182,6 +3184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca3952be23db5b4cb8d47d7404523b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObservationSystem
+  memorySystem: {fileID: 1484199914}
 --- !u!1 &1574835122
 GameObject:
   m_ObjectHideFlags: 0

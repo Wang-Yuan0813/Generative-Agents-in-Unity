@@ -18,7 +18,7 @@ public class DialogueInteraction : MonoBehaviour
     // SETTINGS
     [Header("Settings")]
     [SerializeField]
-    private float typingSpeed = 0.03f;
+    private float typingSpeed = 0.02f;
     [SerializeField]
     private float fadeDuration = 0.5f;
     [SerializeField]

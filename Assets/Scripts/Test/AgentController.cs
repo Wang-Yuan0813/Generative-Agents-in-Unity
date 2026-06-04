@@ -29,6 +29,11 @@ public class AgentController : MonoBehaviour
     private string observationPrompt;//save observation as a natural language text
     [SerializeField]
     private List<string> tasks;//tasks queue
+    [SerializeField]
+    private int currentTaskIndex = 0;
+    [SerializeField]
+    private float taskWaitingDuration = 5.0f;
+    private bool isExecutingTask = false;
     // AI ACTION
     [System.Serializable]
     public class AIAction
@@ -48,11 +53,12 @@ public class AgentController : MonoBehaviour
         //plan
         public List<string> plans;
     }
+    private void Start()
+    {
+        movementController.OnMoveFinished += HandleMoveFinished;
+    }
     //actions
     public Action<string> OnThoughtGenerated;
-    /// <summary>
-    /// Send player command to AI
-    /// </summary>
     public void ProcessPlayerInput(string playerInput)
     {
         List<LLMService.Message> messages = BuildMessages(playerInput);
@@ -60,13 +66,11 @@ public class AgentController : MonoBehaviour
         llmService.SendRequest(messages, OnLLMResponse);
     }
     // BUILD PROMPT
-    private List<LLMService.Message> BuildMessages(
-        string playerInput)
+    private List<LLMService.Message> BuildMessages(string playerInput)
     {
         string systemPrompt = BuildSystemPrompt();
 
-        List<LLMService.Message> messages =
-            new List<LLMService.Message>()
+        List<LLMService.Message> messages = new List<LLMService.Message>()
         {
             new LLMService.Message
             {
@@ -86,6 +90,7 @@ public class AgentController : MonoBehaviour
     // SYSTEM PROMPT
     private string BuildSystemPrompt()
     {
+        memoryPrompt = memorySystem.BuildMemoryPrompt();
         string prompt =
         $@"You are {agentName}, an AI agent in a game world.
 
@@ -167,7 +172,7 @@ public class AgentController : MonoBehaviour
         - each plan should be short and simple.
         - plans should use game actions.
         - avoid unnecessary steps.
-        - maximum 5 plans.
+        - maximum 10 plans.
 
         Current Memories:
         {memoryPrompt}
@@ -186,8 +191,7 @@ public class AgentController : MonoBehaviour
             return;
         }
 
-        Debug.Log("LLM Response:");
-        Debug.Log(response);
+        Debug.Log("LLM Response:" + response);
 
         AIAction action = ParseAction(response);
 
@@ -215,10 +219,44 @@ public class AgentController : MonoBehaviour
     private void ExecuteAction(AIAction action)
     {
         //before every action, observe the environment first
-        ObserveEnvironment();
-        Debug.Log("current observation prompt:\n" + observationPrompt + "\n=======");
-        Debug.Log("current memory prompt:\n" + memoryPrompt + "\n=======");
+        //ObserveEnvironment();
+        ObserveEnvironment(() =>
+        {
+            ContinueAction(action);
+        });
+        /*Debug.Log("current observation prompt:\n" + observationPrompt + "\n=======");
+        Debug.Log("current memory prompt:\n" + memoryPrompt + "\n=======");*/
 
+        /*Debug.Log("[Thought]:" + action.thought);
+        Debug.Log("[Executing Action]:" + action.action);
+        switch (action.action)
+        {
+            case "move":
+                MoveToTarget(action.result.target);
+                break;
+            case "observe":
+                FinishCurrentTask();
+                break;
+            case "stay":
+                FinishCurrentTask();
+                break;
+            case "reflect":
+                Debug.Log("Reflecting");
+                memorySystem.AddMemory(action.result.content, action.result.importance, MemorySystem.MemoryType.Reflection);
+                FinishCurrentTask();
+                break;
+            case "plan":
+                Debug.Log("planning");
+                PlanTasks(action.result.plans);
+                FinishCurrentTask();
+                break;
+            default:
+                Debug.LogWarning("Unknown Action: " + action.action);
+                break;
+        }*/
+    }
+    private void ContinueAction(AIAction action)
+    {
         Debug.Log("[Thought]:" + action.thought);
         Debug.Log("[Executing Action]:" + action.action);
         switch (action.action)
@@ -227,25 +265,29 @@ public class AgentController : MonoBehaviour
                 MoveToTarget(action.result.target);
                 break;
             case "observe":
+                FinishCurrentTask();
                 break;
             case "stay":
+                FinishCurrentTask();
                 break;
             case "reflect":
+                Debug.Log("Reflecting");
                 memorySystem.AddMemory(action.result.content, action.result.importance, MemorySystem.MemoryType.Reflection);
+                FinishCurrentTask();
                 break;
             case "plan":
                 Debug.Log("planning");
                 PlanTasks(action.result.plans);
+                //FinishCurrentTask();
                 break;
             default:
                 Debug.LogWarning("Unknown Action: " + action.action);
                 break;
         }
-        
     }
-    // ACTIONS
-    // MOVE
-    private void MoveToTarget(string target)
+// ACTIONS
+// MOVE
+private void MoveToTarget(string target)
     {
         Debug.Log("Moving To: " + target);
 
@@ -254,19 +296,95 @@ public class AgentController : MonoBehaviour
             movementController.MoveToNode(target);
         }
     }
+    private void HandleMoveFinished() 
+    { 
+        Debug.Log("Move Finished");
+        FinishCurrentTask();
+    }
     // OBSERVE
-    private void ObserveEnvironment()
+    private void ObserveEnvironment(Action onFinished)
     {
         Debug.Log("Observing Environment...");
-        observationPrompt = observationSystem.BuildObservationPrompt(movementController.GetCurrentWayPoint());//get observation from this location
-        memorySystem.AddMemory(observationPrompt);//convert observation into memory
-        memoryPrompt = memorySystem.BuildMemoryPrompt();
-        Debug.Log("Observing done!");
+
+        observationPrompt = observationSystem.BuildObservationPrompt(movementController.GetCurrentWayPoint());
+
+        observationSystem.ProcessObservation(observationPrompt, llmService, () =>
+            {
+                Debug.Log("Observing done!");
+                onFinished?.Invoke();
+            });
     }
-    // PLAN
-    private void PlanTasks(List<string> plans) 
+
+    private void PlanTasks(List<string> plans)
     {
+        // CLEAR
         tasks.Clear();
-        tasks = plans;
+        // ADD
+        tasks.AddRange(plans);
+        // RESET
+        currentTaskIndex = 0;
+        // START
+        isExecutingTask = false;
+        Invoke(nameof(ExecuteNextTask), taskWaitingDuration);
+    }
+    private void ExecuteNextTask()
+    {
+        // already running
+        if (isExecutingTask)
+        {
+            return;
+        }
+
+        // finished
+        if (currentTaskIndex >= tasks.Count)
+        {
+            Debug.Log("All Tasks Finished");
+            return;
+        }
+
+        isExecutingTask = true;
+
+        string currentTask = tasks[currentTaskIndex];
+
+        Debug.Log("Current Task: " + currentTask);
+
+        ProcessTask(currentTask);
+    }
+    private void ProcessTask(string task)
+    {
+        // BUILD MESSAGE
+        List<LLMService.Message> messages = BuildMessages(task);
+        // SEND
+        llmService.SendRequest(messages, OnTaskResponse);
+    }
+    private void OnTaskResponse(string response, bool success)
+    {
+        // FAILED
+        if (!success)
+        {
+            Debug.LogError("Task Request Failed");
+            return;
+        }
+        // PARSE
+        AIAction action = ParseAction(response);
+
+        if (action == null)
+        {
+            Debug.LogError("Failed To Parse Task");
+            return;
+        }
+        // SHOW THOUGHT
+        OnThoughtGenerated?.Invoke(action.thought);
+        // EXECUTE
+        ExecuteAction(action);
+    }
+    private void FinishCurrentTask()
+    {
+        currentTaskIndex++;
+
+        isExecutingTask = false;
+
+        Invoke(nameof(ExecuteNextTask), taskWaitingDuration);
     }
 }
+//plan: You now need to go to point 1 to investigate any clues about where the key might be, and then go to the location of the key.

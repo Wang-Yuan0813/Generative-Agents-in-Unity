@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class MovementController : MonoBehaviour
 {
@@ -23,10 +24,9 @@ public class MovementController : MonoBehaviour
 
     [SerializeField]
     private WayPoint startPoint;
+    public Action OnMoveFinished;
 
-    //==================================================
     // RUNTIME DATA
-    //==================================================
 
     private List<WayPoint> currentPath = new List<WayPoint>();
 
@@ -35,10 +35,7 @@ public class MovementController : MonoBehaviour
     private WayPoint currentWayPoint;
 
     private bool isMoving = false;
-
-    //==================================================
     // UNITY EVENTS
-    //==================================================
 
     private void Start()
     {
@@ -49,11 +46,7 @@ public class MovementController : MonoBehaviour
     {
         MoveAlongPath();
     }
-
-    //==================================================
     // INITIALIZE
-    //==================================================
-
     private void InitializePosition()
     {
         if (wayPointManager == null)
@@ -73,10 +66,7 @@ public class MovementController : MonoBehaviour
         currentWayPoint = startPoint;
     }
 
-    //==================================================
     // PUBLIC MOVE API
-    //==================================================
-
     public void MoveToNode(string targetNodeName)
     {
         WayPoint targetNode = FindWayPointByName(targetNodeName);
@@ -102,11 +92,7 @@ public class MovementController : MonoBehaviour
 
         Debug.Log("Start Moving To: " + targetNodeName);
     }
-
-    //==================================================
     // MOVE
-    //==================================================
-
     private void MoveAlongPath()
     {
         if (!isMoving)
@@ -114,8 +100,7 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        if (currentPath == null ||
-            currentPath.Count == 0)
+        if (currentPath == null || currentPath.Count == 0)
         {
             StopMovement();
 
@@ -142,16 +127,12 @@ public class MovementController : MonoBehaviour
             ReachNode(targetNode);
         }
     }
-
-    //==================================================
     // NODE REACHED
-    //==================================================
-
     private void ReachNode(WayPoint node)
     {
         currentWayPoint = node;
 
-        //Debug.Log("Reached Node: " + node.name);
+        OnMoveFinished?.Invoke();
 
         currentPathIndex++;
 
@@ -160,11 +141,7 @@ public class MovementController : MonoBehaviour
             StopMovement();
         }
     }
-
-    //==================================================
     // STOP
-    //==================================================
-
     private void StopMovement()
     {
         isMoving = false;
@@ -172,10 +149,7 @@ public class MovementController : MonoBehaviour
         Debug.Log("Movement Complete");
     }
 
-    //==================================================
     // FIND NODE
-    //==================================================
-
     private WayPoint FindWayPointByName(string nodeName)
     {
         foreach (WayPoint node in wayPointManager.allWayPoints)
@@ -188,11 +162,7 @@ public class MovementController : MonoBehaviour
         Debug.Log("node doesn't exist!");
         return null;
     }
-
-    //==================================================
     // GETTERS
-    //==================================================
-
     public WayPoint GetCurrentWayPoint()
     {
         return currentWayPoint;
