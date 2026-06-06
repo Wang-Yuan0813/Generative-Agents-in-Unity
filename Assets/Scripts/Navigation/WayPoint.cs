@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 [ExecuteAlways]
 public class WayPoint : MonoBehaviour
@@ -10,7 +11,12 @@ public class WayPoint : MonoBehaviour
     public List<WayPoint> neighbors = new List<WayPoint>();
     public List<Event> events = new List<Event>();
 
-
+    [SerializeField]
+    public TextMeshPro _textMeshPro;
+    private void Start()
+    {
+        _textMeshPro.text = this.name;
+    }
     void Update()
     {
         if (grid == null) return;
@@ -75,6 +81,7 @@ public class WayPoint : MonoBehaviour
                 n.neighbors.Add(this);
             }
         }
+        
     }
 
 }

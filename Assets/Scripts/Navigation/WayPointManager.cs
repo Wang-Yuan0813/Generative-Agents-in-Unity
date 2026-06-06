@@ -102,35 +102,12 @@ public class WayPointManager : MonoBehaviour
     }
 
 
-    [ContextMenu("Test Path 1 -> 5")]
-    void TestPath()
+    [ContextMenu("Rename All Points")]
+    void RenamePoints()
     {
-        if (allWayPoints.Count < 5)
-        {
-            Debug.LogError("Not enough waypoints!");
-            return;
-        }
-
-        WayPoint start = allWayPoints[0]; // node1
-        WayPoint target = allWayPoints[4]; // node5
-
-        List<WayPoint> path = FindPath(start, target);
-
-        if (path == null)
-        {
-            Debug.Log("can not reach");
-        }
-        else
-        {
-            Debug.Log("size of path:" + path.Count);
-
-            string pathStr = "";
-            foreach (var p in path)
-            {
-                pathStr += p.name + " -> ";
-            }
-
-            Debug.Log("path: " + pathStr + "stop");
+        for (int i = 0; i < allWayPoints.Count; i++) { 
+            WayPoint current = allWayPoints[i];
+            current._textMeshPro.text = current.name;
         }
     }
 

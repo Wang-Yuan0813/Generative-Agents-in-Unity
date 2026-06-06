@@ -3,9 +3,6 @@ using UnityEngine;
 [ExecuteAlways]
 public class Event : MonoBehaviour
 {
-    public Grid grid;
-    Vector3 lastPos;
-
     [Header("Event Setting")]
     [SerializeField]
     [TextArea(5, 20)]
@@ -16,18 +13,49 @@ public class Event : MonoBehaviour
     [SerializeField]
     [TextArea(2, 20)]
     private string userDisplay;
+
+    [Header("Pulse")]
+
+    [SerializeField]
+    private bool enablePulse = true;
+
+    [SerializeField]
+    private float pulseInterval = 0.2f;
+
+    [SerializeField]
+    private float bigScaleMultiplier = 1.2f;
+
+    private Vector3 originalScale;
+
+    private float timer;
+
+    private bool isBig = false;
+
+    private void Awake()
+    {
+        originalScale = transform.localScale;
+    }
     void Update()
     {
-        if (grid == null) return;
-        if (Application.isPlaying) return;
-
-        if (transform.position != lastPos)
+        if (Application.isPlaying && enablePulse)
         {
-            Vector3Int cell = grid.WorldToCell(transform.position);
-            Vector3 snappedPos = grid.CellToWorld(cell) + grid.cellSize / 2;
+            timer += Time.deltaTime;
 
-            transform.position = snappedPos;
-            lastPos = snappedPos;
+            if (timer >= pulseInterval)
+            {
+                timer = 0f;
+
+                isBig = !isBig;
+
+                if (isBig)
+                {
+                    transform.localScale = originalScale * bigScaleMultiplier;
+                }
+                else
+                {
+                    transform.localScale = originalScale;
+                }
+            }
         }
     }
     public void stateUpdate(string nextState)
