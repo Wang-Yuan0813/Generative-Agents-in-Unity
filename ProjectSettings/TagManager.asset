@@ -39,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3133278355
+    locked: 0
+  - name: Wall_far
+    uniqueID: 1712936661
+    locked: 0
+  - name: Environment
+    uniqueID: 1807398723
+    locked: 0
+  - name: Wall_near
+    uniqueID: 674536855
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

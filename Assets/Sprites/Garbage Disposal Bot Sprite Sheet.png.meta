@@ -1,0 +1,1175 @@
+fileFormatVersion: 2
+guid: db2e2c0d82be88f46a0c04490088249a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3964802870717758110
+    second: Garbage Disposal Bot Sprite Sheet_0
+  - first:
+      213: 4491822580253019261
+    second: Garbage Disposal Bot Sprite Sheet_1
+  - first:
+      213: -752640814623882507
+    second: Garbage Disposal Bot Sprite Sheet_2
+  - first:
+      213: 2670254197528639491
+    second: Garbage Disposal Bot Sprite Sheet_3
+  - first:
+      213: -4984362198646630687
+    second: Garbage Disposal Bot Sprite Sheet_4
+  - first:
+      213: -6934240899087833165
+    second: Garbage Disposal Bot Sprite Sheet_5
+  - first:
+      213: 6568444893070834116
+    second: Garbage Disposal Bot Sprite Sheet_6
+  - first:
+      213: 1095648996163818264
+    second: Garbage Disposal Bot Sprite Sheet_7
+  - first:
+      213: -1474795879176459084
+    second: Garbage Disposal Bot Sprite Sheet_8
+  - first:
+      213: 1961344539561826838
+    second: Garbage Disposal Bot Sprite Sheet_9
+  - first:
+      213: -2310747698220435006
+    second: Garbage Disposal Bot Sprite Sheet_10
+  - first:
+      213: -83981643224704453
+    second: Garbage Disposal Bot Sprite Sheet_11
+  - first:
+      213: -1148872908139940042
+    second: Garbage Disposal Bot Sprite Sheet_12
+  - first:
+      213: 5611826719538991171
+    second: Garbage Disposal Bot Sprite Sheet_13
+  - first:
+      213: -8143674157413944365
+    second: Garbage Disposal Bot Sprite Sheet_14
+  - first:
+      213: -5364631712950663794
+    second: Garbage Disposal Bot Sprite Sheet_15
+  - first:
+      213: -3392320082569874491
+    second: Garbage Disposal Bot Sprite Sheet_16
+  - first:
+      213: 2495103343310341828
+    second: Garbage Disposal Bot Sprite Sheet_17
+  - first:
+      213: 2121063296111545065
+    second: Garbage Disposal Bot Sprite Sheet_18
+  - first:
+      213: -1976721874438780363
+    second: Garbage Disposal Bot Sprite Sheet_19
+  - first:
+      213: 6552389655625670602
+    second: Garbage Disposal Bot Sprite Sheet_20
+  - first:
+      213: 289221711803080097
+    second: Garbage Disposal Bot Sprite Sheet_21
+  - first:
+      213: -1603825029604329617
+    second: Garbage Disposal Bot Sprite Sheet_22
+  - first:
+      213: -3671212568695640840
+    second: Garbage Disposal Bot Sprite Sheet_23
+  - first:
+      213: -7712826621938256360
+    second: Garbage Disposal Bot Sprite Sheet_24
+  - first:
+      213: -5814059931627032597
+    second: Garbage Disposal Bot Sprite Sheet_25
+  - first:
+      213: -8034578433276773129
+    second: Garbage Disposal Bot Sprite Sheet_26
+  - first:
+      213: -8835170210593846630
+    second: Garbage Disposal Bot Sprite Sheet_27
+  - first:
+      213: -2396943761889534697
+    second: Garbage Disposal Bot Sprite Sheet_28
+  - first:
+      213: 5479128331859236293
+    second: Garbage Disposal Bot Sprite Sheet_29
+  - first:
+      213: -8839477698656038993
+    second: Garbage Disposal Bot Sprite Sheet_30
+  - first:
+      213: -6101614452128916274
+    second: Garbage Disposal Bot Sprite Sheet_31
+  - first:
+      213: -6654044363141835208
+    second: Garbage Disposal Bot Sprite Sheet_32
+  - first:
+      213: 2518740755948830148
+    second: Garbage Disposal Bot Sprite Sheet_33
+  - first:
+      213: -3555120435385339201
+    second: Garbage Disposal Bot Sprite Sheet_34
+  - first:
+      213: -1305125877296930708
+    second: Garbage Disposal Bot Sprite Sheet_35
+  - first:
+      213: -5169867879976064396
+    second: Garbage Disposal Bot Sprite Sheet_36
+  - first:
+      213: -854152416209079990
+    second: Garbage Disposal Bot Sprite Sheet_37
+  - first:
+      213: 5551579745818677121
+    second: Garbage Disposal Bot Sprite Sheet_38
+  - first:
+      213: 3033602934950489736
+    second: Garbage Disposal Bot Sprite Sheet_39
+  - first:
+      213: -4764883812557571784
+    second: Garbage Disposal Bot Sprite Sheet_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 12
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2654b66abc03af8c0800000000000000
+      internalID: -3964802870717758110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c4f0a86d8265e30800000000000000
+      internalID: 4491822580253019261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f202e0ba251e85f0800000000000000
+      internalID: -752640814623882507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308b0b78b06ae0520800000000000000
+      internalID: 2670254197528639491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e658c51dfcf3dab0800000000000000
+      internalID: -4984362198646630687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b762e634a0a4cf90800000000000000
+      internalID: -6934240899087833165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c9373244ddc72b50800000000000000
+      internalID: 6568444893070834116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8139bdef4f6843f00800000000000000
+      internalID: 1095648996163818264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bc2a7136f8788be0800000000000000
+      internalID: -1474795879176459084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61a1cb29778183b10800000000000000
+      internalID: 1961344539561826838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c9f40a16339eefd0800000000000000
+      internalID: -2310747698220435006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3a10f3f323a5def0800000000000000
+      internalID: -83981643224704453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 637bf325d226e00f0800000000000000
+      internalID: -1148872908139940042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 340da2f2ba631ed40800000000000000
+      internalID: 5611826719538991171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d330d8308bdbfe80800000000000000
+      internalID: -8143674157413944365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e85c7ce41effc85b0800000000000000
+      internalID: -5364631712950663794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3bff1bbde0ce0d0800000000000000
+      internalID: -3392320082569874491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c607e7654360a220800000000000000
+      internalID: 2495103343310341828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea09d674d78f6d10800000000000000
+      internalID: 2121063296111545065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a0556ade54194e0800000000000000
+      internalID: -1976721874438780363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acf138dfca3ceea50800000000000000
+      internalID: 6552389655625670602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ad5a515d95830400800000000000000
+      internalID: 289221711803080097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f67bd8c02a11eb9e0800000000000000
+      internalID: -1603825029604329617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc62f3ae9b3d0dc0800000000000000
+      internalID: -3671212568695640840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 816b1393d0986f490800000000000000
+      internalID: -7712826621938256360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: befe980eb4f405fa0800000000000000
+      internalID: -5814059931627032597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fcf584eb717f7090800000000000000
+      internalID: -8034578433276773129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9ac073118b236580800000000000000
+      internalID: -8835170210593846630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71d5cfd19585cbed0800000000000000
+      internalID: -2396943761889534697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c59f3b2036c90c40800000000000000
+      internalID: 5479128331859236293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faf8e9bddddd35580800000000000000
+      internalID: -8839477698656038993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc5778cbf5b25ba0800000000000000
+      internalID: -6101614452128916274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8369d3708e518a3a0800000000000000
+      internalID: -6654044363141835208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cdf0a76f5d54f220800000000000000
+      internalID: 2518740755948830148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb2ff13cccca9aec0800000000000000
+      internalID: -3555120435385339201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 32
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60eb80fde243ede0800000000000000
+      internalID: -1305125877296930708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47a2356ed80f048b0800000000000000
+      internalID: -5169867879976064396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a41f0d727e07524f0800000000000000
+      internalID: -854152416209079990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18f86c38d5c2b0d40800000000000000
+      internalID: 5551579745818677121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garbage Disposal Bot Sprite Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e6e4febc5891a20800000000000000
+      internalID: 3033602934950489736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6199783f150cb884da3aa2af73d04a2c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Garbage Disposal Bot Sprite Sheet_0: -3964802870717758110
+      Garbage Disposal Bot Sprite Sheet_1: 4491822580253019261
+      Garbage Disposal Bot Sprite Sheet_10: -2310747698220435006
+      Garbage Disposal Bot Sprite Sheet_11: -83981643224704453
+      Garbage Disposal Bot Sprite Sheet_12: -1148872908139940042
+      Garbage Disposal Bot Sprite Sheet_13: 5611826719538991171
+      Garbage Disposal Bot Sprite Sheet_14: -8143674157413944365
+      Garbage Disposal Bot Sprite Sheet_15: -5364631712950663794
+      Garbage Disposal Bot Sprite Sheet_16: -3392320082569874491
+      Garbage Disposal Bot Sprite Sheet_17: 2495103343310341828
+      Garbage Disposal Bot Sprite Sheet_18: 2121063296111545065
+      Garbage Disposal Bot Sprite Sheet_19: -1976721874438780363
+      Garbage Disposal Bot Sprite Sheet_2: -752640814623882507
+      Garbage Disposal Bot Sprite Sheet_20: 6552389655625670602
+      Garbage Disposal Bot Sprite Sheet_21: 289221711803080097
+      Garbage Disposal Bot Sprite Sheet_22: -1603825029604329617
+      Garbage Disposal Bot Sprite Sheet_23: -3671212568695640840
+      Garbage Disposal Bot Sprite Sheet_24: -7712826621938256360
+      Garbage Disposal Bot Sprite Sheet_25: -5814059931627032597
+      Garbage Disposal Bot Sprite Sheet_26: -8034578433276773129
+      Garbage Disposal Bot Sprite Sheet_27: -8835170210593846630
+      Garbage Disposal Bot Sprite Sheet_28: -2396943761889534697
+      Garbage Disposal Bot Sprite Sheet_29: 5479128331859236293
+      Garbage Disposal Bot Sprite Sheet_3: 2670254197528639491
+      Garbage Disposal Bot Sprite Sheet_30: -8839477698656038993
+      Garbage Disposal Bot Sprite Sheet_31: -6101614452128916274
+      Garbage Disposal Bot Sprite Sheet_32: -6654044363141835208
+      Garbage Disposal Bot Sprite Sheet_33: 2518740755948830148
+      Garbage Disposal Bot Sprite Sheet_34: -3555120435385339201
+      Garbage Disposal Bot Sprite Sheet_35: -1305125877296930708
+      Garbage Disposal Bot Sprite Sheet_36: -5169867879976064396
+      Garbage Disposal Bot Sprite Sheet_37: -854152416209079990
+      Garbage Disposal Bot Sprite Sheet_38: 5551579745818677121
+      Garbage Disposal Bot Sprite Sheet_39: 3033602934950489736
+      Garbage Disposal Bot Sprite Sheet_4: -4984362198646630687
+      Garbage Disposal Bot Sprite Sheet_5: -6934240899087833165
+      Garbage Disposal Bot Sprite Sheet_6: 6568444893070834116
+      Garbage Disposal Bot Sprite Sheet_7: 1095648996163818264
+      Garbage Disposal Bot Sprite Sheet_8: -1474795879176459084
+      Garbage Disposal Bot Sprite Sheet_9: 1961344539561826838
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

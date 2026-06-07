@@ -219,41 +219,10 @@ public class AgentController : MonoBehaviour
     private void ExecuteAction(AIAction action)
     {
         //before every action, observe the environment first
-        //ObserveEnvironment();
         ObserveEnvironment(() =>
         {
             ContinueAction(action);
         });
-        /*Debug.Log("current observation prompt:\n" + observationPrompt + "\n=======");
-        Debug.Log("current memory prompt:\n" + memoryPrompt + "\n=======");*/
-
-        /*Debug.Log("[Thought]:" + action.thought);
-        Debug.Log("[Executing Action]:" + action.action);
-        switch (action.action)
-        {
-            case "move":
-                MoveToTarget(action.result.target);
-                break;
-            case "observe":
-                FinishCurrentTask();
-                break;
-            case "stay":
-                FinishCurrentTask();
-                break;
-            case "reflect":
-                Debug.Log("Reflecting");
-                memorySystem.AddMemory(action.result.content, action.result.importance, MemorySystem.MemoryType.Reflection);
-                FinishCurrentTask();
-                break;
-            case "plan":
-                Debug.Log("planning");
-                PlanTasks(action.result.plans);
-                FinishCurrentTask();
-                break;
-            default:
-                Debug.LogWarning("Unknown Action: " + action.action);
-                break;
-        }*/
     }
     private void ContinueAction(AIAction action)
     {

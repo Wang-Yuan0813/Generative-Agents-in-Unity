@@ -25,7 +25,7 @@ public class DialogueInteraction : MonoBehaviour
     private float visibleDuration = 3f;
     [SerializeField]
     [Range(0, 255)]
-    private int targetAlpha = 100;
+    private int targetAlpha = 240;
 
     // UNITY EVENTS
     private void Start()

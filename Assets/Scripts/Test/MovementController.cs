@@ -12,7 +12,10 @@ public class MovementController : MonoBehaviour
 
     [SerializeField]
     private WayPointManager wayPointManager;
-
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private SpriteRenderer sprite;
     //==================================================
     // MOVEMENT SETTINGS
     //==================================================
@@ -25,7 +28,9 @@ public class MovementController : MonoBehaviour
     [SerializeField]
     private WayPoint startPoint;
     public Action OnMoveFinished;
-
+    [SerializeField]
+    private float pivotYOffset = 20f;
+    private Vector3 pivotOffset;
     // RUNTIME DATA
 
     private List<WayPoint> currentPath = new List<WayPoint>();
@@ -60,8 +65,9 @@ public class MovementController : MonoBehaviour
             Debug.LogError("Start Point Missing");
             return;
         }
+        pivotOffset.y = pivotYOffset;
 
-        transform.position = startPoint.transform.position;
+        transform.position = startPoint.transform.position + pivotOffset;
 
         currentWayPoint = startPoint;
     }
@@ -90,7 +96,14 @@ public class MovementController : MonoBehaviour
 
         isMoving = true;
 
-        Debug.Log("Start Moving To: " + targetNodeName);
+        animator.SetBool("IsWalking", isMoving);
+
+        if(targetNode.transform.position.x < transform.position.x)
+            sprite.flipX = true;
+        else 
+            sprite.flipX = false;
+
+            Debug.Log("Start Moving To: " + targetNodeName);
     }
     // MOVE
     private void MoveAlongPath()
@@ -116,11 +129,9 @@ public class MovementController : MonoBehaviour
 
         WayPoint targetNode = currentPath[currentPathIndex];
 
-        transform.position =
-            Vector3.MoveTowards(transform.position, targetNode.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetNode.transform.position + pivotOffset, moveSpeed * Time.deltaTime);
 
-        float distance =
-            Vector3.Distance(transform.position, targetNode.transform.position);
+        float distance = Vector3.Distance(transform.position, targetNode.transform.position + pivotOffset);
 
         if (distance < 0.05f)
         {
@@ -145,6 +156,8 @@ public class MovementController : MonoBehaviour
     private void StopMovement()
     {
         isMoving = false;
+
+        animator.SetBool("IsWalking", isMoving);
 
         Debug.Log("Movement Complete");
     }

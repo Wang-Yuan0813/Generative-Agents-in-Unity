@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Test\MemorySystem.cs" />
     <Compile Include="Assets\Scripts\Test\Event.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Character\TopDownSorting.cs" />
     <Compile Include="Assets\Scripts\Test\ObservationSystem.cs" />
     <Compile Include="Assets\Scripts\Managers\ManagersRoot.cs" />
     <Compile Include="Assets\Scripts\Navigation\WayPoint.cs" />

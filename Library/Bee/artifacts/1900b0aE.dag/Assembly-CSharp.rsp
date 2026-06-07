@@ -477,6 +477,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/Scripts/Character/Hero.cs"
+"Assets/Scripts/Character/TopDownSorting.cs"
 "Assets/Scripts/Managers/Bootstrap.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/ManagersAutoLoader.cs"
