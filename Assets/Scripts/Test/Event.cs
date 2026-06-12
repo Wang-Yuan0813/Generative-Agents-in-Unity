@@ -31,6 +31,23 @@ public class Event : MonoBehaviour
 
     private bool isBig = false;
 
+    public enum MyEventType
+    {
+        Observation,
+        Pickup,
+        Use
+    }
+    [SerializeField]
+    private MyEventType eventType;
+
+    [Header("Item")]
+    [SerializeField]
+    private ItemData item;
+
+    [SerializeField]
+    [TextArea]
+    private string interactionResult;
+
     private void Awake()
     {
         originalScale = transform.localScale;
@@ -65,7 +82,20 @@ public class Event : MonoBehaviour
     }
     
     public string GetObservationText() 
-    { 
-        return description + "\nCurrent State: " + currentState; 
+    {
+        return description;
+        //return description + "\nCurrent State: " + currentState; 
+    }
+    public MyEventType GetEventType()
+    {
+        return eventType;
+    }
+    public ItemData GetItem()
+    {
+        return item;
+    }
+    public string GetInteractionResult()
+    {
+        return interactionResult;
     }
 }

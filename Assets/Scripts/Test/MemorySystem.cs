@@ -125,6 +125,22 @@ public class MemorySystem : MonoBehaviour
 
         return memoryText;
     }
+    public string BuildKnownWayPointPrompt()
+    {
+        string knownWayPointsText = "";
+        foreach(WayPoint wp in knownWayPoints)
+        {
+            knownWayPointsText += wp.name + "\n";
+        }
+        return knownWayPointsText;
+    }
+    public bool hasWayPoint(string wayPointName)
+    {
+        foreach (WayPoint wp in knownWayPoints) {
+            if (wayPointName == wp.name) return true;
+        }
+        return false;
+    }
     // REFLECTION CHECK
     public bool ShouldReflect()
     {
@@ -135,5 +151,15 @@ public class MemorySystem : MonoBehaviour
         }
 
         return false;
+    }
+    private string latestObservation = "";
+    public void SetLatestObservation(string observation)
+    {
+        latestObservation = observation;
+    }
+
+    public string GetLatestObservation()
+    {
+        return latestObservation;
     }
 }

@@ -133,6 +133,7 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_INPUT_SYSTEM
+-define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
 -define:TEXTCORE_FONT_ENGINE_1_6_OR_NEWER
@@ -477,7 +478,9 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.3.11f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/Scripts/Character/Hero.cs"
-"Assets/Scripts/Character/TopDownSorting.cs"
+"Assets/Scripts/Inventory/InventoryItem.cs"
+"Assets/Scripts/Inventory/InventorySystem.cs"
+"Assets/Scripts/Inventory/ItemData.cs"
 "Assets/Scripts/Managers/Bootstrap.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/ManagersAutoLoader.cs"
@@ -493,6 +496,8 @@
 "Assets/Scripts/Test/MemorySystem.cs"
 "Assets/Scripts/Test/MovementController.cs"
 "Assets/Scripts/Test/ObservationSystem.cs"
+"Assets/Scripts/UI/BeginningPanelControl.cs"
+"Assets/Scripts/UI/ThoughtBubble.cs"
 -langversion:9.0
 /deterministic
 /optimize+
