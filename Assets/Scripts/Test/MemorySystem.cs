@@ -136,9 +136,12 @@ public class MemorySystem : MonoBehaviour
     }
     public bool hasWayPoint(string wayPointName)
     {
-        foreach (WayPoint wp in knownWayPoints) {
-            if (wayPointName == wp.name) return true;
+        foreach (WayPoint wp in knownWayPoints)
+        {
+            if (string.Equals(wayPointName, wp.name, StringComparison.OrdinalIgnoreCase))
+                return true;
         }
+
         return false;
     }
     // REFLECTION CHECK

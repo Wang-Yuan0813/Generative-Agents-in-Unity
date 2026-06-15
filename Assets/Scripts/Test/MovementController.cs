@@ -4,10 +4,7 @@ using System;
 
 public class MovementController : MonoBehaviour
 {
-    //==================================================
     // REFERENCES
-    //==================================================
-
     [Header("References")]
 
     [SerializeField]
@@ -16,10 +13,7 @@ public class MovementController : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private SpriteRenderer sprite;
-    //==================================================
     // MOVEMENT SETTINGS
-    //==================================================
-
     [Header("Movement Settings")]
 
     [SerializeField]
@@ -143,13 +137,13 @@ public class MovementController : MonoBehaviour
     {
         currentWayPoint = node;
 
-        OnMoveFinished?.Invoke();
-
         currentPathIndex++;
 
         if (currentPathIndex >= currentPath.Count)
         {
             StopMovement();
+
+            OnMoveFinished?.Invoke();
         }
     }
     // STOP

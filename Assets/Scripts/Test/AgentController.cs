@@ -29,9 +29,6 @@ public class AgentController : MonoBehaviour
     [TextArea(3, 20)]
     private string memoryPrompt;//save memory as a natural language text
     [SerializeField]
-    [TextArea(3, 20)]
-    private string observationPrompt;//save observation as a natural language text
-    [SerializeField]
     private List<string> tasks;//tasks queue
     [SerializeField]
     private int currentTaskIndex = 0;
@@ -40,6 +37,8 @@ public class AgentController : MonoBehaviour
     private bool isExecutingTask = false;
     [SerializeField]
     private float observationDisplayDuration = 3f;
+    [SerializeField]
+    private float pickupDisplayDuration = 2f;
     [System.Serializable]
     public class ExecutionContext
     {
@@ -118,134 +117,177 @@ public class AgentController : MonoBehaviour
     {
         memoryPrompt = memorySystem.BuildMemoryPrompt();
         string prompt =
-        $@"You are {agentName}, an AI agent in a game world.
+$@"You are {agentName}, an AI agent in a game world.
 
-        You must strictly output JSON.
+The player is your professor.
 
-        Do not output explanations.
+Whenever you refer to the player,
+always call them ""Professor"".
 
-        Format:
+Never call the player by any other title
+such as user, human, player, sir, friend, or their name.
 
-        {{
-            ""thought"":"""",
-            ""action"":"""",
-            ""result"":{{}}
-        }}
+You must strictly output JSON.
 
-        Rules:
-        - thought must be short.
-        - thought should explain the reason for the action.
-        - action must be a game action.
-        - result format depends on action type.
-        - you can only use the locations in Known Location.
+Do not output explanations.
 
-        Available Game Actions:
-        - move
-        - observe
-        - stay
-        - reflect
-        - plan
-        - pickup
-        - use
+Format:
 
-        Move Action Format:
-        {{
-            ""thought"":""The kitchen may contain food."",
-            ""action"":""move"",
-            ""result"":
-            {{
-                ""target"":""kitchen""
-            }}
-        }}
+{{
+    ""thought"":"""",
+    ""action"":"""",
+    ""result"":{{}}
+}}
 
-        Reflect Action Format:
-        {{
-            ""thought"":""I have enough memories to infer a pattern."",
-            ""action"":""reflect"",
-            ""result"":
-            {{
-                ""content"":""The player seems interested in food."",
-                ""importance"":8
-            }}
-        }}
+Rules:
+- thought must be short.
+- thought should explain the reason for the action.
+- action must be a game action.
+- result format depends on action type.
+- you can only use the locations in Known Location.
 
-        Pickup Action Format:
-        {{
-          ""thought"":""The cable may be useful."",
-          ""action"":""pickup"",
-          ""result"":
-          {{
-              ""itemName"":""Black Cable""
-          }}
-        }}
+Available Game Actions:
+- move
+- observe
+- stay
+- reflect
+- plan
+- pickup
+- use
 
-        Use Action Format:
-        {{
-            ""thought"":""The cable may work here."",
-            ""action"":""use"",
-            ""result"":
-            {{
-                ""itemName"":""Black Cable""
-            }}
-        }}
+Move Action Format:
+{{
+    ""thought"":""The kitchen may contain food."",
+    ""action"":""move"",
+    ""result"":
+    {{
+        ""target"":""kitchen""
+    }}
+}}
 
-        Rules for Reflection:
-        - content must summarize multiple memories.
-        - content must be high-level knowledge.
-        - importance must be between 1 and 10.
-        - do not repeat raw observations.
-        - reflection should infer personality, preference, habit, or world knowledge.
+Reflect Action Format:
+{{
+    ""thought"":""I have enough memories to infer a pattern."",
+    ""action"":""reflect"",
+    ""result"":
+    {{
+        ""content"":""The player seems interested in food."",
+        ""importance"":8
+    }}
+}}
 
-        Plan Action Format:
-        {{
-            ""thought"":""I should break the task into steps."",
-            ""action"":""plan"",
-            ""result"":
-            {{
-                ""plans"":
-                [
-                    ""move table"",
-                    ""pickup black cable"",
-                    ""move monitor"",
-                    ""use black cable""
-                ]
-            }}
-        }}
+Rules for Reflection:
+- content must summarize multiple memories.
+- content must be high-level knowledge.
+- importance must be between 1 and 10.
+- do not repeat raw observations.
+- reflection should infer personality, preference, habit, or world knowledge.
 
-        Rules for Planning:
-        - use ""plan"" when the player gives a complex task.
-        - plans must be ordered step-by-step tasks.
-        - each plan should be short and simple.
-        - plans should use game actions.
-        - avoid unnecessary steps.
-        - maximum 10 plans.
-        - If the user specifies a location, move directly there.
-        - Do not visit unrelated locations.
-        - Do not explore unless the location is unknown.
-        - If an item location is already known, go directly to that location.
-        - Use only these task formats:
-          move <location>
-          pickup <item>
-          use <item>
-          observe
+Pickup Action Format:
+{{
+    ""thought"":""The cable may be useful."",
+    ""action"":""pickup"",
+    ""result"":
+    {{
+        ""itemName"":""Black Cable""
+    }}
+}}
 
-        - Do not create free-form tasks.
-        - Every task must match one of the formats above.
+Pickup Rules:
+- If observation contains:
+    Pickable Item: <item>
+    and the item may help achieve the current goal,
+    prefer pickup <item>.
+Use exact item names from observations.
+Example:
+Pickable Item: Apple
+Correct:
+pickup Apple
+Wrong:
+pickup apple
+pickup apples
+pickup red apple
 
-        Current Observation:
-        {latestObservation}
+- Do not move away from a visible pickable item
+    before deciding whether to pick it up.
 
-        Current Memories:
-        {memoryPrompt}
+Inventory Rules:
+- Never pickup an item that is already in the inventory.
+- Check Items in bag before planning pickup actions.
 
-        Current Location:
-        {movementController.GetCurrentWayPoint().name}
+Use Action Format:
+{{
+    ""thought"":""The cable may work here."",
+    ""action"":""use"",
+    ""result"":
+    {{
+        ""itemName"":""Black Cable""
+    }}
+}}
 
-        Known Location:
-        {memorySystem.BuildKnownWayPointPrompt()}
+Use Rules:
+- If the required item is already in the inventory
+  and the current location contains a usable object,
+  prefer use <item>.
 
-        Items in bag:
-        {inventorySystem.BuildItemsPrompt()}";
+- Do not search for the same item again
+  if it is already in the inventory.
+
+Plan Action Format:
+{{
+    ""thought"":""I should break the task into steps."",
+    ""action"":""plan"",
+    ""result"":
+    {{
+        ""plans"":
+        [
+            ""move table"",
+            ""pickup black cable"",
+            ""move monitor"",
+            ""use black cable""
+        ]
+    }}
+}}
+
+Rules for Planning:
+- use ""plan"" when the player gives a complex task.
+- plans must be ordered step-by-step tasks.
+- each plan should be short and simple.
+- plans should use game actions.
+- avoid unnecessary steps.
+- maximum 10 plans.
+- If the user specifies a location, move directly there.
+- Do not visit unrelated locations.
+- Do not explore unless the location is unknown.
+- If an item location is already known, go directly to that location.
+- Use only these task formats:
+    move <location>
+    pickup <item>
+    use <item>
+    observe
+
+- Do not create free-form tasks.
+- Every task must match one of the formats above.
+
+Current Observation:
+{latestObservation}
+
+Observation Rules:
+- Current Observation describes everything visible right now.
+- Treat Current Observation as the most reliable source of information.
+- Prefer acting on visible objects before exploring elsewhere.
+
+Current Memories:
+{memoryPrompt}
+
+Current Location:
+{movementController.GetCurrentWayPoint().name}
+
+Known Location:
+{memorySystem.BuildKnownWayPointPrompt()}
+
+Items in bag:
+{inventorySystem.BuildItemsPrompt()}";
 
 
         return prompt;
@@ -398,6 +440,8 @@ public class AgentController : MonoBehaviour
     {
         string observationText = observationSystem.BuildObservationSpeech(movementController.GetCurrentWayPoint());
 
+        latestObservation = observationText;
+
         if (lastObservationLocation == movementController.GetCurrentWayPoint().name)
         {
             onFinished?.Invoke();
@@ -444,34 +488,35 @@ public class AgentController : MonoBehaviour
     BuildReplanMessages()
     {
         string prompt =
-        $@"Goal:
-        {executionContext.Goal}
+$@"Goal:
+{executionContext.Goal}
 
-        Completed Tasks:
-        {string.Join("\n",
-            executionContext.CompletedTasks)}
+Completed Tasks:
+{string.Join("\n",
+executionContext.CompletedTasks)}
 
-        Failed Task:
-        {executionContext.FailedTask}
+Failed Task:
+{executionContext.FailedTask}
 
-        Failure Reason:
-        {executionContext.FailureReason}
+Failure Reason:
+{executionContext.FailureReason}
 
-        Current Location:
-        {movementController
-            .GetCurrentWayPoint()
-            .name}
+Current Observation:
+{latestObservation}
 
-        Inventory:
-        {inventorySystem.BuildItemsPrompt()}
+Current Location:
+{movementController.GetCurrentWayPoint().name}
 
-        Generate a PLAN action.
+Inventory:
+{inventorySystem.BuildItemsPrompt()}
 
-        Output JSON only.
+Generate a PLAN action.
 
-        Do not repeat completed tasks.
+Output JSON only.
 
-        Create a new plan from current state.";
+Do not repeat completed tasks.
+
+Create a new plan from current state.";
 
         return new List<LLMService.Message>()
         {
@@ -512,8 +557,10 @@ public class AgentController : MonoBehaviour
         Invoke(nameof(ExecuteNextTask), taskWaitingDuration);
     }
     //Pickup
+    private string latestFailureObservation = "";
     private void PickupItem(string itemName)
     {
+        Debug.Log("PickupItem Enter");
         WayPoint current = movementController.GetCurrentWayPoint();
 
         foreach (Event evt in current.events)
@@ -523,68 +570,86 @@ public class AgentController : MonoBehaviour
 
             ItemData item = evt.GetItem();
 
-            if (item.itemName != itemName)
+            if (!string.Equals(item.itemName, itemName, StringComparison.OrdinalIgnoreCase))
                 continue;
 
             inventorySystem.AddItem(item);
 
-            current.events.Remove(evt);
+            OnThoughtGenerated?.Invoke($"I picked up {item.itemName}.");
 
-            Destroy(evt.gameObject);
+            Invoke(nameof(FinishCurrentTask), pickupDisplayDuration);
 
-            FinishCurrentTask();
+            latestFailureObservation = BuildPickupableItemsPrompt();
+
+            OnTaskFailed(
+                $"Item [{itemName}] not found.\n" + latestFailureObservation);
 
             return;
         }
 
         OnTaskFailed("Item not found");
     }
+    private string BuildPickupableItemsPrompt()
+    {
+        WayPoint current = movementController.GetCurrentWayPoint();
+
+        List<string> items = new();
+
+        foreach (Event evt in current.events)
+        {
+            if (evt.GetEventType() != MyEventType.Pickup)
+                continue;
+
+            ItemData item = evt.GetItem();
+
+            if (item == null)
+                continue;
+
+            items.Add(item.itemName);
+        }
+
+        if (items.Count == 0)
+            return "No pickupable items.";
+
+        return "Pickupable Items:\n- " + string.Join("\n- ", items);
+    }
     //Use
     private void UseItem(string itemName)
     {
-        if (!inventorySystem.HasItem(itemName))
+        ItemData item = inventorySystem.GetItem(itemName);
+
+        if (item == null)
         {
             OnTaskFailed("Missing item");
             return;
         }
 
-        WayPoint current = movementController.GetCurrentWayPoint();
+        string currentLocation = movementController.GetCurrentWayPoint().name;
 
-        foreach (Event evt in current.events)
+        inventorySystem.RemoveItem(itemName);
+
+        if (item.validLocations.Contains(currentLocation))
         {
-            if (evt.GetEventType() != MyEventType.Use)
-            {
-                continue;
-            }
+            memorySystem.AddMemory(item.useSuccessResult, 8);
 
-            ItemData requiredItem = evt.GetItem();
-
-            if (requiredItem == null)
-            {
-                continue;
-            }
-
-            if (requiredItem.itemName != itemName)
-            {
-                continue;
-            }
-
-            inventorySystem.RemoveItem(itemName);
-
-            memorySystem.AddMemory(evt.GetInteractionResult(), 8);
-
-            evt.stateUpdate("Activated");
+            OnThoughtGenerated?.Invoke($"Professor, I used {itemName} successfully.");
 
             FinishCurrentTask();
-
-            return;
         }
+        else
+        {
+            memorySystem.AddMemory(item.useFailResult, 3);
 
-        OnTaskFailed("Cannot use item here");
+            OnThoughtGenerated?.Invoke($"Professor, {itemName} had no effect here.");
+
+            FinishCurrentTask();
+        }
     }
     //tasks
     private bool ExecuteDeterministicTask(string task)
     {
+        Debug.Log("ExecuteDeterministicTask: [" + task + "]");
+
         task = task.Trim().ToLower();
 
         if (task.StartsWith("move "))
@@ -622,6 +687,8 @@ public class AgentController : MonoBehaviour
             return true;
         }
 
+        Debug.Log("No deterministic match");
+
         return false;
     }
     private void ExecuteNextTask()
@@ -645,8 +712,11 @@ public class AgentController : MonoBehaviour
 
         executionContext.CurrentTask = currentTask;
 
-        Debug.Log("Current Task: " + currentTask);
-
+        Debug.Log(
+        $"ExecuteNextTask " +
+        $"Index={currentTaskIndex} " +
+        $"Count={tasks.Count} " +
+        $"Running={isExecutingTask}");
 
         if (!ExecuteDeterministicTask(currentTask))
         {
@@ -683,13 +753,16 @@ public class AgentController : MonoBehaviour
             Debug.LogError("Failed To Parse Task");
             return;
         }
-        // SHOW THOUGHT
+        // SHOW THOUGHTbuil
         OnThoughtGenerated?.Invoke(action.thought);
         // EXECUTE
         ExecuteAction(action);
     }
     private void FinishCurrentTask()
     {
+        Debug.Log(
+        $"FinishCurrentTask -> " +
+        executionContext.CurrentTask);
         if (!string.IsNullOrEmpty(executionContext.CurrentTask))
         {
             executionContext.CompletedTasks.Add(executionContext.CurrentTask);

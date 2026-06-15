@@ -2522,12 +2522,12 @@ MonoBehaviour:
   agentName: Agent1
   personalityPrompt: null
   memoryPrompt: 
-  observationPrompt: 
   tasks: []
   currentTaskIndex: 0
-  taskWaitingDuration: 5
+  taskWaitingDuration: 4
   observationDisplayDuration: 3
-  thoughtReadTime: 4
+  pickupDisplayDuration: 2
+  thoughtReadTime: 3
 --- !u!114 &577788028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,9 +3226,8 @@ PrefabInstance:
       objectReference: {fileID: 1015334684}
     - target: {fileID: 6210222323843131541, guid: 8efbe43e14158e1468458eb34770b724, type: 3}
       propertyPath: description
-      value: "If there is a data cable in the backpack, you can use it to synchronize
-        all path nodes. \nIf there is a data cable in the backpack, you can use it
-        to synchronize all path nodes."
+      value: 'This screen displays the entire map. If used, it allows the robot to
+        access all the path nodes. '
       objectReference: {fileID: 0}
     - target: {fileID: 6210222323843131541, guid: 8efbe43e14158e1468458eb34770b724, type: 3}
       propertyPath: userDisplay
@@ -3454,12 +3453,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WayPointManager
   allWayPoints:
-  - {fileID: 1702872560}
   - {fileID: 1376865486}
   - {fileID: 150258623}
-  - {fileID: 182546039}
-  - {fileID: 990815498}
   - {fileID: 749318133}
+  - {fileID: 990815498}
+  - {fileID: 1702872560}
+  - {fileID: 182546039}
+  - {fileID: 1745531242}
   - {fileID: 1432015023}
 --- !u!4 &1079833567
 Transform:
@@ -15976,7 +15976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3111538871252023652, guid: 6e518ab3b2bd65d479400ddc4ec19fb2, type: 3}
       propertyPath: m_Name
-      value: Screen
+      value: Monitor
       objectReference: {fileID: 0}
     - target: {fileID: 4048726712974925040, guid: 6e518ab3b2bd65d479400ddc4ec19fb2, type: 3}
       propertyPath: grid
@@ -16008,7 +16008,7 @@ PrefabInstance:
       objectReference: {fileID: 182546039}
     - target: {fileID: 4809689076107697308, guid: 6e518ab3b2bd65d479400ddc4ec19fb2, type: 3}
       propertyPath: m_text
-      value: Screen
+      value: Monitor
       objectReference: {fileID: 0}
     - target: {fileID: 8907725108839470510, guid: 6e518ab3b2bd65d479400ddc4ec19fb2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16163,6 +16163,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8907725108839470510, guid: 6e518ab3b2bd65d479400ddc4ec19fb2, type: 3}
   m_PrefabInstance: {fileID: 1745531240}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1745531242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4048726712974925040, guid: 6e518ab3b2bd65d479400ddc4ec19fb2, type: 3}
+  m_PrefabInstance: {fileID: 1745531240}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef17600f7d66d648bc7339b7ac0040d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WayPoint
 --- !u!1 &1768881697
 GameObject:
   m_ObjectHideFlags: 0

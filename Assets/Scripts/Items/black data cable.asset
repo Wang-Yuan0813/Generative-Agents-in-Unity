@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: black data cable
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: black data cable
+  validLocations:
+  - Monitor
   description: a usable black data cable
+  useSuccessResult: used ok
+  useFailResult: uesd fail

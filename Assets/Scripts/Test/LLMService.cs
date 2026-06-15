@@ -32,9 +32,8 @@ public class LLMService : MonoBehaviour
     [SerializeField]
     private int maxTokens = 256;
 
-    //==================================================
+    
     // CALLBACK
-    //==================================================
 
     public delegate void ResponseCallback(string response, bool success);
 
@@ -66,8 +65,8 @@ public class LLMService : MonoBehaviour
 
         string jsonBody = JsonUtility.ToJson(requestBody);
 
-        Debug.Log("Sending Request:");
-        Debug.Log(jsonBody);
+        /*Debug.Log("Sending Request:");
+        Debug.Log(jsonBody);*/
 
         UnityWebRequest request = CreateWebRequest(jsonBody);
 

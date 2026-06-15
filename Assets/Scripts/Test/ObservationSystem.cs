@@ -7,37 +7,29 @@ public class ObservationSystem : MonoBehaviour
     [SerializeField]
     private MemorySystem memorySystem;
 
-    public List<string> GetObservations(
-        WayPoint currentNode)
+    public List<string> GetObservations(WayPoint currentNode)
     {
-        List<string> observations =
-            new List<string>();
+        List<string> observations = new List<string>();
 
-        observations.Add(
-            $"I am in {currentNode.name}.");
+        observations.Add($"I am in {currentNode.name}.");
 
-        memorySystem.AddKnownWayPoint(
-            currentNode);
+        memorySystem.AddKnownWayPoint(currentNode);
 
         if (currentNode.events.Count > 0)
         {
             foreach (Event evt in currentNode.events)
             {
-                observations.Add(
-                    evt.GetObservationText());
+                observations.Add(evt.GetObservationText());
             }
         }
         else
         {
-            observations.Add(
-                "There is nothing interesting here.");
+            observations.Add("There is nothing interesting here.");
         }
 
-        foreach (WayPoint neighbor
-            in currentNode.neighbors)
+        foreach (WayPoint neighbor in currentNode.neighbors)
         {
-            observations.Add(
-                $"I can go to {neighbor.name}.");
+            observations.Add($"I can go to {neighbor.name}.");
 
             memorySystem.AddKnownWayPoint(neighbor);
         }
@@ -57,6 +49,12 @@ public class ObservationSystem : MonoBehaviour
                 continue;
 
             if (obs.StartsWith("I can go to"))
+                continue;
+
+            if (obs.StartsWith("Pickable Item:"))
+                continue;
+
+            if (obs.StartsWith("Usable With:"))
                 continue;
 
             important.Add(obs);

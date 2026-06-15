@@ -81,10 +81,34 @@ public class Event : MonoBehaviour
         Debug.Log(this.name + "has been interacted, state change to->" + nextState);
     }
     
-    public string GetObservationText() 
+    /*public string GetObservationText() 
     {
         return description;
-        //return description + "\nCurrent State: " + currentState; 
+    }*/
+    public string GetObservationText()
+    {
+        switch (eventType)
+        {
+            case MyEventType.Pickup:
+
+                return
+                    $"{description}\n" +
+                    $"Pickable Item: {item.itemName}";
+
+            case MyEventType.Use:
+
+                return
+                    $"{description}\n" +
+                    $"Usable With: {item.itemName}";
+
+            default:
+
+                return description;
+        }
+    }
+    public string GetDisplayObservationText()
+    {
+        return description;
     }
     public MyEventType GetEventType()
     {
