@@ -49,4 +49,9 @@ public class InventorySystem : MonoBehaviour
 
         return null;
     }
+    public ItemData getIndex(int index)
+    {
+        if (index < 0 || index >= items.Count) return null;
+        return items[index];
+    }
 }

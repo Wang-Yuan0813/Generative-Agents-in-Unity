@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83b9be1a5bd3319409fba41a611a270c, type: 3}
-  m_Name: black data cable
+  m_Name: toilet paper
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: black data cable
-  icon: {fileID: 7084060711741569152, guid: 817f8af405134614a9aa67b4bd813f5c, type: 3}
+  itemName: 
+  icon: {fileID: 0}
   validLocations:
-  - Monitor
-  description: a usable black data cable
-  useSuccessResult: 'The CCTV footage shows: After using it last time, the professor
-    put the toilet paper on the bookshelf.'
-  useFailResult: Nothing happened
+  - Toilet
+  description: A toilet paper
+  useSuccessResult: ok
+  useFailResult: fail
