@@ -6,7 +6,7 @@ public class ObservationSystem : MonoBehaviour
 {
     [SerializeField]
     private MemorySystem memorySystem;
-
+    
     public List<string> GetObservations(WayPoint currentNode)
     {
         List<string> observations = new List<string>();
@@ -32,6 +32,7 @@ public class ObservationSystem : MonoBehaviour
             observations.Add($"I can go to {neighbor.name}.");
 
             memorySystem.AddKnownWayPoint(neighbor);
+
         }
 
         return observations;

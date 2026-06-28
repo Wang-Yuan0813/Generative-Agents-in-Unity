@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b9be1a5bd3319409fba41a611a270c, type: 3}
   m_Name: toilet paper
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
+  itemName: toilet paper
+  icon: {fileID: -3875618746956434429, guid: 0e90214aecf0f2245888bbcb35c64a42, type: 3}
   validLocations:
   - Toilet
   description: A toilet paper
-  useSuccessResult: ok
-  useFailResult: fail
+  useSuccessResult: Professor, I got this to you!
+  useFailResult: Oh no, I wasted the toilet paper!

@@ -3,7 +3,7 @@
 using UnityEngine;
 public static class ManagersAutoLoader
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    /*[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void EnsureManagersExist()
     {
         if (GameManager.Instance == null)
@@ -16,6 +16,6 @@ public static class ManagersAutoLoader
                 Object.DontDestroyOnLoad(root);
             }
         }
-    }
+    }*/
 }
 

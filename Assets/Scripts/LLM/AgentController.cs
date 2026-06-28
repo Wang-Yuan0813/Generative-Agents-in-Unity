@@ -18,6 +18,8 @@ public class AgentController : MonoBehaviour
     private ObservationSystem observationSystem;
     [SerializeField]
     private InventorySystem inventorySystem;
+    [SerializeField]
+    private InGameManager inGameManager;
     // CHARACTER SETTINGS
     [Header("Character Properies")]
     [SerializeField]
@@ -488,29 +490,6 @@ Items in bag:
                 cachedObserveFinished = onFinished;
             });
     }
-    /*private void ObserveEnvironment(Action onFinished)
-    {
-        string observationText = observationSystem.BuildObservationSpeech(movementController.GetCurrentWayPoint());
-
-        latestObservation = observationText;
-
-        if (lastObservationLocation == movementController.GetCurrentWayPoint().name)
-        {
-            onFinished?.Invoke();
-            return;
-        }
-        else 
-            lastObservationLocation = movementController.GetCurrentWayPoint().name;
-        OnThoughtGenerated?.Invoke(observationText);
-
-        observationSystem.SaveObservationAsMemory(observationText, llmService,
-                () =>
-                {
-                    Invoke(nameof(FinishObservation), observationDisplayDuration);
-
-                    cachedObserveFinished = onFinished;
-                });
-    }*/
     private Action cachedObserveFinished;
 
     private void FinishObservation()
@@ -720,6 +699,13 @@ Create a new plan from current state.";
             OnThoughtGenerated?.Invoke(item.useSuccessResult);
 
             FinishCurrentTask();
+
+            Debug.Log(currentLocation);
+            if(currentLocation == "Toilet")
+            {
+                Debug.Log("win");
+                Invoke(nameof(GameEndWin), pickupDisplayDuration);
+            }
         }
         else
         {
@@ -729,6 +715,10 @@ Create a new plan from current state.";
 
             FinishCurrentTask();
         }
+    }
+    private void GameEndWin()
+    {
+        inGameManager.GameEndWin();
     }
     //tasks
     private bool ExecuteDeterministicTask(string task)

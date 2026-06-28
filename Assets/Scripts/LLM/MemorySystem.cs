@@ -32,6 +32,7 @@ public class MemorySystem : MonoBehaviour
     [Header("Known WayPoints")]
     [SerializeField]
     private List<WayPoint> knownWayPoints = new List<WayPoint>();
+
     public void AddMemory(string content, int importance = 1, MemoryType type = MemoryType.Observation)
     {
         // DUPLICATE CHECK
