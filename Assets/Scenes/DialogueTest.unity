@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c47dc4bdcdbb248bd94c1ea56f7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LLMDialogueManager
-  apiKey: sk-1d12cdc531c949debc67fd2de087e24f
+  apiKey: 
   modelName: deepseek-chat
   apiUrl: https://api.deepseek.com/v1/chat/completions
   temperature: 0.7
